@@ -1,0 +1,18 @@
+keras_mnist/top.html
+
+<form 
+action="{% url 'keras_mnist:upload' %}" 
+method='POST' enctype="multipart/form-data">
+    {% csrf_token %}
+    <input type="file" name='file'>
+    <input type="submit" value='送信'>
+</form>
+
+
+
+
+{% if result %}
+    <img src="data:image/png;base64,{{ result.0 }}" alt="">
+    <p>{{ result.1 }}</p>
+{% endif %}
+    
