@@ -1,4 +1,29 @@
-{{ object.name }}
+{% extends 'bulma_base.html' %}
+
+{% block content %}
+
+<main class='columns'>
+    <article class='column'>
+        <section class='box'>
+            <h1 class='title'>{{ object.name }}</h1>    
+                <div class='level'>
+                    <div class='level-right'>
+                        <p></p>
+                    </div>
+                    <div class='level-left'>
+                        
+                        
+                        <a class='button is-primary level-item'
+                        target="_blank"
+                        href="/{{ object.slug }}/">RUN</a>
 
 
-<a href="/{{ object.slug }}/">RUN</a>
+
+                    </div>
+                </div>
+        </section>
+    </article>
+</main>
+
+{% endblock content %}
+    
