@@ -2,12 +2,13 @@ from django.db import models
 
 class Project(models.Model):
 	"""Model definition for Project."""
+	
 	name = models.CharField('プロジェクト名', max_length=255)
 	slug = models.SlugField('プロジェクトスラグ', unique=True)
 	timestamp = models.DateTimeField(auto_now_add=True)
 
-	overview = models.CharField('概要', max_length=255)
-	description = models.TextField()
+	overview = models.CharField('概要', max_length=255, null=True, blank=True)
+	description = models.TextField(null=True, blank=True)
 
 	RELEASE_CONDITION = (
 		('public', '全員に公開'),
