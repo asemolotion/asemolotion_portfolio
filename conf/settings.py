@@ -17,7 +17,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'general',
-    'keras_mnist'
+    'keras_mnist',
+    'blogsite_by_django'
+
 ]
 
 MIDDLEWARE = [
