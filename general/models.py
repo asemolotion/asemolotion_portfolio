@@ -2,7 +2,7 @@ from django.db import models
 
 class Project(models.Model):
 	"""Model definition for Project."""
-	
+
 	name = models.CharField('プロジェクト名', max_length=255)
 	slug = models.SlugField('プロジェクトスラグ', unique=True)
 	timestamp = models.DateTimeField(auto_now_add=True)
@@ -15,7 +15,6 @@ class Project(models.Model):
 		('limited', 'LIMITED')
 	)
 	release_condition = models.CharField('閲覧制限', max_length=50, choices=RELEASE_CONDITION, default='limited')
-		
 
 	class Meta:
 		"""Meta definition for Project."""
