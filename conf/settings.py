@@ -104,10 +104,17 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+# app以下以外の静的ファイルの置き場所
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static')
+]
+# debug=Falseのときに配信される置き場所。collectstaticで集められる。
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 
-# local_settings.pyから設定を読み込む。
+# local_settings.pyがあれば設定を読み込む。
 try:
     from .local_settings import *
 except ImportError:
     pass
+
