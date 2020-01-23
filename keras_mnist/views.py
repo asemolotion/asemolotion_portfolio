@@ -16,10 +16,17 @@ graph = tf.get_default_graph()
 
 
 class TopView(TemplateView):
+    """ メイン画面表示　"""
     template_name = 'keras_mnist/top.html'
 
-def mnist(img):
 
+def mnist(img):
+    """ 
+    モデルを使って画像を判定した結果を返す関数
+    
+    Params: img: ndarray
+    Returns: int: 0から9までのリストの順番
+    """
     global graph
     with graph.as_default():
         result = model.predict(img,  batch_size=None, verbose=0, steps=None).argmax()
@@ -27,11 +34,14 @@ def mnist(img):
     return result
 
 def upload(request):
-
+    """
+    フォームから画像ファイルをPOSTした時のビュー
+    """
     _file = request.FILES.get('file')
+    # ファイルを選択せずに送信すると、_file は Noneになる
+    context = {}
 
-    if request.method == "POST" and _file:
-        
+    if request.method == "POST" and (_file is not None):
         img = Image.open(_file)
 
         gray_img = img.convert('L')
@@ -51,7 +61,6 @@ def upload(request):
         src = base64.b64encode(_file.read()).decode()
         # src = str(src)[2:-1]
 
-    context = {'result': (src, label)}
-    
+        context['result'] = (src, label)
 
     return render(request, 'keras_mnist/top.html', context)
