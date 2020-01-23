@@ -17,11 +17,15 @@ class IndexView(TemplateView):
         return context
 
 class AboutView(TemplateView):
+    """
+    サイトの概要ページ
+    """
     template_name = 'general/about.html'
+
 
 class ProjectView(DetailView):
     """
-    プロジェクトの概要について。各アプリへのリンクをもつページ。
+    プロジェクトの概要について説明する詳細ページ。各アプリへのリンクをもつページ。
     """
     model = Project
     template_name = 'general/project.html'    
