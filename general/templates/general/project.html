@@ -27,7 +27,7 @@
                 </div>
             </div>
             <div class='description'>
-                <p>{{ object.description }}</p>
+                {{ object.formatted_markdown | safe }}
             </div>
         </section>
     </article>
