@@ -35,7 +35,7 @@ def mnist(img):
 
 def upload(request):
     """
-    
+    フォームから画像ファイルをPOSTした時のビュー
     """
     _file = request.FILES.get('file')
     # ファイルを選択せずに送信すると、_file は Noneになる
@@ -60,8 +60,6 @@ def upload(request):
         file_name = _file
         src = base64.b64encode(_file.read()).decode()
         # src = str(src)[2:-1]
-        print('this is src')
-        print(src)
 
         context['result'] = (src, label)
 

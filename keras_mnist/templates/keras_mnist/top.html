@@ -1,27 +1,67 @@
 {% extends 'bs4_base.html' %}
+{% load static %}
 
 {% block content %}
     
+<style type="text/css">
+video {
+    width: 100%;
+}
+</style>
+
 <div class='container'>
 
+<section id='description' class='mt-3'>
+    <h3><u>手書き数字判定器</u></h3>
+    <p>
+        手書きされた0から9までの数字のうち、どの数字かを判別します。
+    </p>
+    <p>
+        
+    </p>
+</section>
 
-
-<form 
-action="{% url 'keras_mnist:upload' %}" 
-method='POST' enctype="multipart/form-data">
-    {% csrf_token %}
-    <input type="file" name='file'>
-    <input type="submit" value='送信'>
-</form>
-
-
+<!-- ボーターで包んだフォーム -->
+<section id='form' class='my-2'>
+    <div class='border rounded px-2 py-2'>
+        <form 
+        action="{% url 'keras_mnist:upload' %}" class=''
+        method='POST' enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class='form-group'>
+                <label for="file">判定する画像を選択してください。<br>
+                    <small class='text-secondary'>フォーマットはPNG,JPGのみです。黒背景の白文字の数字のみ対応しています。</small>
+                </label>
+                <input type="file" name='file' id='file' class='form-control-file'>
+            </div>
+            <button type="submit" class='btn btn-primary'>送信</button>
+        </form>
+    </div>
+</section>
 
 
 {% if result %}
-    <img src="data:image/png;base64,{{ result.0 }}" alt="">
-    <p>{{ result.1 }}</p>
+<section id='result' class='my-2'>
+    <div class='bg-primary rounded px-2 py-2'>
+        <h5 class='text-white'>予測結果</h5>
+        <img src="data:image/png;base64,{{ result.0 }}" alt="">
+        <p class='text-white'>この画像は <strong>{{ result.1 }}</strong> と予測されました。</p>
+    </div>
+</section>
 {% endif %}
-    
+
+<section id='demo' class='mt-5'>
+    <p class='text-info'><strong>このアプリケーションのイメージ</strong></p>
+    <div class='border rounded px-2 py-2'>
+    <p>
+    画像は、トレーニングに使ったMNISTデータセットの画像を使っています。
+    黒背景の白文字の数字しか判別できません。
+    </p>
+        <video src="{% static 'keras_mnist/img/demo.mp4' %}" autoplay muted></video>
+    </div>
+</section>
+
+
 </div>
 
 {% endblock content %}

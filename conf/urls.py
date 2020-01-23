@@ -23,4 +23,9 @@ urlpatterns = [
     path('blogsite_by_django/', include('blogsite_by_django.urls')),
 
     path('markdownx/', include('markdownx.urls')),
-]
+] 
+
+from django.conf import settings
+from django.conf.urls.static import static
+urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
+
