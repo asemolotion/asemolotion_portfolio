@@ -52,5 +52,6 @@ def upload(request):
         # src = str(src)[2:-1]
 
     context = {'result': (src, label)}
+    
 
     return render(request, 'keras_mnist/top.html', context)
