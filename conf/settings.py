@@ -125,6 +125,8 @@ if not DEBUG:
     import django_heroku #追加
     django_heroku.settings(locals()) #追加
     
+    STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+
     # for heroku db
     import dj_database_url
     DATABASES = {
