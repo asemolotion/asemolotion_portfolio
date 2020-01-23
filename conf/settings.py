@@ -18,8 +18,10 @@ INSTALLED_APPS = [
 
     'general',
     'keras_mnist',
-    'blogsite_by_django'
+    'blogsite_by_django',
 
+    # 3rd party
+    'markdownx',
 ]
 
 MIDDLEWARE = [
