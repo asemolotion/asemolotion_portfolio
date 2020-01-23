@@ -1,4 +1,10 @@
-keras_mnist/top.html
+{% extends 'bs4_base.html' %}
+
+{% block content %}
+    
+<div class='container'>
+
+
 
 <form 
 action="{% url 'keras_mnist:upload' %}" 
@@ -16,3 +22,6 @@ method='POST' enctype="multipart/form-data">
     <p>{{ result.1 }}</p>
 {% endif %}
     
+</div>
+
+{% endblock content %}

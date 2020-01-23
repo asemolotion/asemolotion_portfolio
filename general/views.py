@@ -15,7 +15,9 @@ class IndexView(TemplateView):
         context['project_list'] = Project.objects.all()
 
         return context
-    
+
+class AboutView(TemplateView):
+    template_name = 'general/about.html'
 
 class ProjectView(DetailView):
     """

@@ -1,0 +1,44 @@
+<nav class="navbar navbar-expand-md navbar-light bg-light">
+        <a class="navbar-brand" href="{% url 'general:index' %}">asemolotion portfolio</a>
+        
+        <!-- 閲覧者ステータスの明示 -->
+        {% if request.user.is_superuser %}
+       <span class='border rounded border-danger px-1 py-1'><b class='text-danger'>
+            Superuser
+        </b>
+        </span>            
+        {% elif request.session.invitation_verification == 'ok' %}
+        <span class='border rounded border-danger px-1 py-1'><b class='text-danger'>
+            認証済み招待ユーザ
+        </b>
+        </span>
+        {% endif %}
+                    
+        <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#Navber" aria-controls="Navber"
+                aria-expanded="false"
+                aria-label="ナビゲーションの切替">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+    
+        <div class="collapse navbar-collapse" id="Navber">
+            <ul class="navbar-nav mr-auto">     
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'general:index' %}">Home</a>
+                </li>               
+                <li class="nav-item">
+                    <a class="nav-link" href="#">About</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Contact</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">記事一覧</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="/admin">管理</a>
+                </li>
+
+            </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+    </nav>
