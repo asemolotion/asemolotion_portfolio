@@ -30,6 +30,7 @@ MIDDLEWARE = [
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.messages.middleware.MessageMiddleware',
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
+    'whitenoise.middleware.WhiteNoiseMiddleware', #追加
 ]
 
 ROOT_URLCONF = 'conf.urls'
@@ -104,10 +105,38 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.2/howto/static-files/
 
 STATIC_URL = '/static/'
+# app以下以外の静的ファイルの置き場所
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, 'static')
+]
+# debug=Falseのときに配信される置き場所。collectstaticで集められる。
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 
-# local_settings.pyから設定を読み込む。
+# local_settings.pyがあれば設定を読み込む。
 try:
     from .local_settings import *
 except ImportError:
     pass
+
+if not DEBUG:
+    # for heroku
+    SECRET_KEY = os.environ['SECRET_KEY']
+    import django_heroku #追加
+    django_heroku.settings(locals()) #追加
+    
+    # for heroku db
+    import dj_database_url
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.postgresql_psycopg2',
+            'NAME': 'name',
+            'USER': 'user',
+            'PASSWORD': '',
+            'HOST': 'host',
+            'PORT': '',
+        }
+    }
+
+    db_from_env = dj_database_url.config(conn_max_age=600, ssl_require=True)
+    DATABASES['default'].update(db_from_env)    
