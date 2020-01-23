@@ -16,6 +16,13 @@
             <div class='level'>
                 <div class='level-right'>
                     <p>{{ object.overview }}</p>
+                    <p>
+                        
+                        {% for tag in object.tags.all %}
+                        <span>{{ tag.name }}</span>
+                        {% endfor %}
+                            
+                    </p>
                 </div>
                 <div class='level-left'>
                     
@@ -27,6 +34,7 @@
                 </div>
             </div>
             <div class='content'>
+                <!-- bulmaを効かせるために class='content'が必要 -->
                 {{ object.formatted_markdown | safe }}
             </div>
         </section>
