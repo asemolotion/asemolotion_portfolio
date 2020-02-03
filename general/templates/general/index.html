@@ -3,23 +3,25 @@
 
 {% block content %}
     
-    <section class='section'>
-        <div class='container columns'>
-            
-            {% for project in project_list %}
-            <div class='column'>
-                <div class='card'>
-                    <div class='card-content'>
-                        
-                        <a href="{% url 'general:project' project.pk %}">
-                            {{ project.name }}
-                        </a>    
-                    </div>
+<section class='section'>
+    <h5 class='title is-5 has-text-info has-text-centered'>
+        works
+    </h5>
+    <div class='container columns'>
+        {% for project in project_list %}
+        <div class='column'>
+            <div class='card'>
+                <div class='card-content'>
+                    
+                    <a href="{% url 'general:project' project.pk %}">
+                        {{ project.name }}
+                    </a>    
                 </div>
-            </div>        
-            {% endfor %}
-        </div>
-    </section>
+            </div>
+        </div>        
+        {% endfor %}
+    </div>
+</section>
 
 
 

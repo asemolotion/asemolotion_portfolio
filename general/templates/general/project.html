@@ -15,21 +15,19 @@
                     
             <div class='level'>
                 <div class='level-right'>
-                    <p>{{ object.overview }}</p>
                     <p>
-                        
                         {% for tag in object.tags.all %}
-                        <span>{{ tag.name }}</span>
-                        {% endfor %}
-                            
+                        <span class='tag is-link is-rounded'>{{ tag.name }}</span>
+                        {% endfor %}                  
                     </p>
+                    <p>{{ object.overview }}</p>
                 </div>
                 <div class='level-left'>
                     
                     
                     <a class='button is-primary level-item'
                     target="_blank"
-                    href="/{{ object.slug }}/">RUN</a>
+                    href="/{{ object.slug }}/">実際のアプリ・デモをみる</a>
 
                 </div>
             </div>
