@@ -4,6 +4,8 @@ from .conf_vars import REPLY_ENDPOINT, CHANNEL_ACCESS_TOKEN
 import urllib.request
 import urllib.parse
 
+import requests
+
 def parse_line_webhook(request):
     """
     LINEのwebhookからのリクエストを分解して、
@@ -58,15 +60,14 @@ def reply(reply_token, text):
                 }
             ]
         }
-    # requests.post(REPLY_ENDPOINT, headers=header, data=json.dumps(payload))
+    requests.post(REPLY_ENDPOINT, headers=header, data=json.dumps(payload))
     
-    data = urllib.parse.urlencode(payload).encode('utf-8')
-    req = urllib.request.Request(REPLY_ENDPOINT, data, headers=header)
+    # data = urllib.parse.urlencode(payload).encode('utf-8')
+    # req = urllib.request.Request(REPLY_ENDPOINT, data, headers=header)
     
+    # with urllib.request.urlopen(req) as res:
+    #     print('replyしました。')
+    #     body = res.read()    
     
-    with urllib.request.urlopen(req) as res:
-        print('replyしました。')
-        body = res.read()    
-    
-    return 
+    return 'replied'
     

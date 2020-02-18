@@ -16,6 +16,7 @@ dj-database-url = "*"
 psycopg2-binary = "*"
 django-markdownx = "*"
 numpy = "==1.17.5"
+requests = "*"
 
 [requires]
 python_version = "3.7"
