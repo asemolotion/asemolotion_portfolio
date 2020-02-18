@@ -18,9 +18,9 @@ def callback(request):
     if request.method == 'POST':
         reply_token, text = parse_line_webhook(request)
 
-        print(reply_token)
-        print(text)
+        # print(reply_token)
+        # print(text)
 
-        reply(reply_token, text)
+        # reply(reply_token, text)
 
     return HttpResponse(200)
