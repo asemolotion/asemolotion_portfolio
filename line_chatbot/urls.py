@@ -6,6 +6,6 @@ app_name = 'line_chatbot'
 
 urlpatterns = [
     path('', TopView.as_view(), name='top'),
-    path('callback/', callback, name='callback'),  # LINEからのWebhookコールバック
+    path('callback/', callback, name='callback'),  # LINEからのWebhookのコールバック
 
 ]

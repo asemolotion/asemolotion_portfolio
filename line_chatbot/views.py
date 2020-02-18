@@ -11,16 +11,12 @@ class TopView(TemplateView):
     template_name = 'line_chatbot/top.html'
 
 
-# LINEからのWebhookでのPOSTリクエストはCSRFトークンつけれないので。
+# LINEからのWebhookでのPOSTリクエストはCSRFトークンつけれないのでCSRFトークンを無視する。
 @csrf_exempt
 def callback(request):
 
     if request.method == 'POST':
-        reply_token, text = parse_line_webhook(request)
+        parse_line_webhook(request)
 
-        # print(reply_token)
-        # print(text)
-
-        # reply(reply_token, text)
 
     return HttpResponse(200)
