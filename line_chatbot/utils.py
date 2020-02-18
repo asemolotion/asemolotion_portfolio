@@ -26,7 +26,10 @@ def parse_line_webhook(request):
             event_type = event['type']
 
             if event_type == 'message':
-                text = event['message']['text']
+                text = event['message'].get('text','')  # message['type']が'sticker'の場合はパス
+
+            if text:
+                reply(reply_token, text)
     else:
         reply_token = 'No reply_token'
         text = 'No text'
