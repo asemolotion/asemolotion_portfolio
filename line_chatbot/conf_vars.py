@@ -1,3 +1,10 @@
+"""
+
+LINE APIを使う上での、キーなど。
+line_chatbotアプリでしか使わない変数を設定しているモジュール。
+
+"""
+
 
 import socket 
 
