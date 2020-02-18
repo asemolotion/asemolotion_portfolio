@@ -31,6 +31,9 @@ def parse_line_webhook(request):
         reply_token = 'No reply_token'
         text = 'No text'
 
+    print(reply_token)
+    print(text)
+
     return reply_token, text
 
 
@@ -49,7 +52,8 @@ def reply(reply_token, text):
             ]
         }
     # requests.post(REPLY_ENDPOINT, headers=header, data=json.dumps(payload))
-    urllib.request.Request(REPLY_ENDPOINT, payload, headers)
+    
+    urllib.request.Request(REPLY_ENDPOINT, json.dumps(payload), headers)
     
     with urllib.request.urlopen(req) as res:
         body = res.read()    

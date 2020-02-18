@@ -23,5 +23,4 @@ def callback(request):
 
         reply(reply_token, text)
 
-
     return HttpResponse(200)
