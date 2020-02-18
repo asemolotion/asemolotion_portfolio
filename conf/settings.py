@@ -19,6 +19,7 @@ INSTALLED_APPS = [
     'general',
     'keras_mnist',
     'blogsite_by_django',
+    'line_chatbot',
 
     # 3rd party
     'markdownx',

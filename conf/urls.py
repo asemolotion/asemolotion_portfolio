@@ -21,7 +21,7 @@ urlpatterns = [
     path('', include('general.urls')),
     path('keras_mnist/', include('keras_mnist.urls')),
     path('blogsite_by_django/', include('blogsite_by_django.urls')),
-
+    path('line_chatbot/', include('line_chatbot.urls')),
     path('markdownx/', include('markdownx.urls')),
 ] 
 
