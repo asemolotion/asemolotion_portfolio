@@ -18,7 +18,7 @@ def parse_line_webhook(request):
     
     print(request_json)
 
-    if(request_json != None):  # requestの中身が何かあるとき
+    if request_json != None:  # requestの中身が何かあるとき
 
         for event in request_json['events']:
             # maybe one event comes...
@@ -26,7 +26,7 @@ def parse_line_webhook(request):
             event_type = event['type']
 
             if event_type == 'message':
-                text = event['message'].get('text','')  # message['type']が'sticker'の場合はパス
+                text = event['message'].get('text', None)  # message['type']が'sticker'の場合は'text'のデータは入っていない。
 
             if text:
                 reply(reply_token, text)
@@ -41,6 +41,8 @@ def parse_line_webhook(request):
 
 
 def reply(reply_token, text):
+    print('replyします。')
+
     header = {
         "Content-Type": "application/json",
         "Authorization": "Bearer " + CHANNEL_ACCESS_TOKEN  # チャンネルアクセストークン
@@ -58,7 +60,9 @@ def reply(reply_token, text):
     
     urllib.request.Request(REPLY_ENDPOINT, json.dumps(payload), headers)
     
+    
     with urllib.request.urlopen(req) as res:
+        print('replyしました。')
         body = res.read()    
     
     return 
