@@ -23,7 +23,7 @@ def parse_line_webhook(request):
             event_type = event['type']
 
             if event_type == 'message':
-				text = event['message']['text']
+                text = event['message']['text']
     else:
         reply_token = 'No reply_token'
         text = 'No text'
@@ -32,22 +32,20 @@ def parse_line_webhook(request):
 
 
 def reply(reply_token, text):
-	header = {
-		"Content-Type": "application/json",
-		"Authorization": "Bearer " + CHANNEL_ACCESS_TOKEN  # チャンネルアクセストークン
+    header = {
+        "Content-Type": "application/json",
+        "Authorization": "Bearer " + CHANNEL_ACCESS_TOKEN  # チャンネルアクセストークン
 	}
-	payload = {
-		"replyToken":reply_token,
-		"messages":[
-				{
-					"type":"text",
-					"text": "%s です。" % text
-				}
-			]
-	}
+    payload = {
+        "replyToken":reply_token,
+        "messages":[
+                {
+                    "type":"text",
+                    "text": "%s です。" % text
+                }
+            ]
+        }
     # requests.post(REPLY_ENDPOINT, headers=header, data=json.dumps(payload))
-
     urllib.request.Request(REPLY_ENDPOINT, payload, headers)
-
     return 
     
