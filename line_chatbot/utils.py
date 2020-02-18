@@ -15,6 +15,9 @@ def parse_line_webhook(request):
     """
     request_json = json.loads(request.body.decode('utf-8'))
 
+    
+    print(request_json)
+
     if(request_json != None):  # requestの中身が何かあるとき
 
         for event in request_json['events']:
@@ -47,5 +50,6 @@ def reply(reply_token, text):
         }
     # requests.post(REPLY_ENDPOINT, headers=header, data=json.dumps(payload))
     urllib.request.Request(REPLY_ENDPOINT, payload, headers)
+    
     return 
     
