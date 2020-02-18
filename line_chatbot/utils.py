@@ -51,5 +51,8 @@ def reply(reply_token, text):
     # requests.post(REPLY_ENDPOINT, headers=header, data=json.dumps(payload))
     urllib.request.Request(REPLY_ENDPOINT, payload, headers)
     
+    with urllib.request.urlopen(req) as res:
+        body = res.read()    
+    
     return 
     
