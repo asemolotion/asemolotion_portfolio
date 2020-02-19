@@ -19,7 +19,7 @@ def predict_reply(user_message):
     vectorizer = Vectorizer()
     measure = DistanceMeasure()
 
-    word_list = wd.tokenize(message)
+    word_list = wd.tokenize(user_message)
     mean_vec = vectorizer.get_mean_vectorized(word_list)
     nearest_options = measure.get_option_data(mean_vec)
 

@@ -73,12 +73,18 @@ def dispatch_payload(reply_token, text):
     Returns:
         payload: dict: 返信内容
     """
-    
-    
+
+    ##########################
+    # 返信メッセージの条件分岐設定
+    ##########################
+
     if 'バス' in text:
         my_message = bus(text)
     else:
         my_message = estimated_option(text)
+
+    ##########################
+
 
     payload = {
         "replyToken":reply_token,

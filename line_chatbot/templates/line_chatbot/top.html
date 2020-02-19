@@ -24,6 +24,22 @@ video {
             
     </section>
 
+    <section id='' class='mt-3'>
+        <h5>自動返信内容の確認</h5>
+        <form action="{% url 'line_chatbot:post_message' %}" method='POST'>
+            {% csrf_token %}
+            <label for="message">LINEで送信するメッセージを入れてください</label>
+            <input type="text" name='message' id='message'>
+            <button type="submit">送信</button>
+        </form>
+        
+        
+        {% if auto_reply %}
+        <p>
+            返信: 「{{ auto_reply }}」
+        </p>
+        {% endif %}
+    </section>
 
 </div>
 
