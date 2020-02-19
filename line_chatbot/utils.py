@@ -74,6 +74,7 @@ def dispatch_payload(reply_token, text):
         payload: dict: 返信内容
     """
     
+    
     if 'バス' in text:
         my_message = bus(text)
     else:
