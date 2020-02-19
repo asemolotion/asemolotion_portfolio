@@ -1,10 +1,6 @@
 import os
 import pickle
 
-from line_chatbot.reply_prediction.tokenizer import WordDivider
-from line_chatbot.reply_prediction.vectorizer import Vectorizer
-
-
 OPTIONS_DATA = [
     {
         'id': 0,
@@ -102,35 +98,41 @@ OPTIONS_DATA = [
     },                      
 ]
 
-CUSTOM_DICT_PATH = os.path.join(os.path.abspath(os.path.dirname(__file__)), 'janome_custom_dict.csv')
 
-# インスタンスの準備
-wd = WordDivider(CUSTOM_DICT_PATH, udic_type='simpledic', udic_enc='utf8')  # 文章->単語リストに分割
-vectorizer = Vectorizer()  # 単語リスト->ベクトル
+if __name__ == "__main__":
 
+    from tokenizer import WordDivider
+    from vectorizer import Vectorizer
 
-options = []
+    CUSTOM_DICT_PATH = os.path.join(os.path.abspath(os.path.dirname(__file__)), 'janome_custom_dict.csv')
 
-for option in OPTIONS_DATA:
-    text = option['title'] + option.get('subtext', '')
-    word_list = wd.tokenize(text)
-
-    unique_words = set(word_list)
-    option['word_list'] = list(unique_words)  # 分割した単語を入れる。重複単語を消すとかはまたあとで。
-    
-    # optionごとに重みをつけるために重複でも入れる単語を増やす。
-    option['word_list'] += option['keywords']
-
-    print(option['word_list'])
-    mean_vec = vectorizer.get_mean_vectorized(option['word_list'])  # 各項目を表す単語リストの分散表現の平均をとる
-    option['vec'] = mean_vec
-    options.append(option)
+    # インスタンスの準備
+    wd = WordDivider(CUSTOM_DICT_PATH, udic_type='simpledic', udic_enc='utf8')  # 文章->単語リストに分割
+    vectorizer = Vectorizer()  # 単語リスト->ベクトル
 
 
-# pickle 形式でoptionsというリストを保存。
+    options = []
 
-PARENT_PATH = os.path.abspath(os.path.dirname(__file__))
-pkl_file_path = os.path.join(PARENT_PATH, 'options.pkl')
+    for option in OPTIONS_DATA:
+        text = option['title'] + option.get('subtext', '')
+        word_list = wd.tokenize(text)
 
-with open(pkl_file_path, 'wb') as f:
-    pickle.dump(options, f)
+        unique_words = set(word_list)
+        option['word_list'] = list(unique_words)  # 分割した単語を入れる。重複単語を消すとかはまたあとで。
+        
+        # optionごとに重みをつけるために重複でも入れる単語を増やす。
+        option['word_list'] += option['keywords']
+
+        print(option['word_list'])
+        mean_vec = vectorizer.get_mean_vectorized(option['word_list'])  # 各項目を表す単語リストの分散表現の平均をとる
+        option['vec'] = mean_vec
+        options.append(option)
+
+
+    # pickle 形式でoptionsというリストを保存。
+
+    PARENT_PATH = os.path.abspath(os.path.dirname(__file__))
+    pkl_file_path = os.path.join(PARENT_PATH, 'options.pkl')
+
+    with open(pkl_file_path, 'wb') as f:
+        pickle.dump(options, f)
