@@ -17,6 +17,8 @@ psycopg2-binary = "*"
 django-markdownx = "*"
 numpy = "==1.17.5"
 requests = "*"
+janome = "*"
+fasttext = "*"
 
 [requires]
 python_version = "3.7"

@@ -74,10 +74,11 @@ def dispatch_payload(reply_token, text):
         payload: dict: 返信内容
     """
     
+    
     if 'バス' in text:
         my_message = bus(text)
     else:
-        my_message = echo(text)
+        my_message = estimated_option(text)
 
     payload = {
         "replyToken":reply_token,

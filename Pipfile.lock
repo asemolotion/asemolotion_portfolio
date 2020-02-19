@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "f9577b739c26d1ff94b741935c44940ed54ceb9989a9242d91e3106ddcbd43a2"
+            "sha256": "b76fafd646e74717df5df368d47b84fe10ef4e09971191a076a9bca82f5577e3"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -74,6 +74,14 @@
             ],
             "index": "pypi",
             "version": "==3.0.1"
+        },
+        "fasttext": {
+            "hashes": [
+                "sha256:6ead9c6aafe985472066e27c43e33f581b192befd136a84c3c2e8197e7e05be6",
+                "sha256:f79b3447b1612b9b1ad791d4be97db3fecb97762dba01e6fbec389d0d0874772"
+            ],
+            "index": "pypi",
+            "version": "==0.9.1"
         },
         "gast": {
             "hashes": [
@@ -186,6 +194,14 @@
                 "sha256:ea8b7f6188e6fa117537c3df7da9fc686d485087abf6ac197f9c46432f7e4a3c"
             ],
             "version": "==2.8"
+        },
+        "janome": {
+            "hashes": [
+                "sha256:3bddefa113ab1342653193e70be2a18c3d1baa64837a8ac0c6960efb8a07bba7",
+                "sha256:b002731b2790da73d085c628ab9c929dcc4bae7ef20910abd976713d6c0666b0"
+            ],
+            "index": "pypi",
+            "version": "==0.3.10"
         },
         "keras": {
             "hashes": [
@@ -349,6 +365,13 @@
             ],
             "index": "pypi",
             "version": "==2.8.4"
+        },
+        "pybind11": {
+            "hashes": [
+                "sha256:06398d054acd33d3b89d4b12000fadc36e946001438425a96c9e30048655ab96",
+                "sha256:72e6def53fb491f7f4e92692029d2e7bb5a0783314f20d80222735ff10a75758"
+            ],
+            "version": "==2.4.3"
         },
         "pytz": {
             "hashes": [
