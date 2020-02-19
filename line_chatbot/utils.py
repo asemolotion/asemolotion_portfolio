@@ -66,7 +66,8 @@ from .messages import *
 
 def dispatch_payload(reply_token, text):
     """
-    受け取ったメッセージごとに返信を場合わけする関数
+    返信Payloadを作成する関数。
+    テキストによる返信か、カルーセルによる返信か、などの分岐はここ。
 
     Params:
         text: string: メッセージ
@@ -74,17 +75,7 @@ def dispatch_payload(reply_token, text):
         payload: dict: 返信内容
     """
 
-    ##########################
-    # 返信メッセージの条件分岐設定
-    ##########################
-
-    if 'バス' in text:
-        my_message = bus(text)
-    else:
-        my_message = estimated_option(text)
-
-    ##########################
-
+    my_message = message_reply(text)
 
     payload = {
         "replyToken":reply_token,
@@ -98,3 +89,26 @@ def dispatch_payload(reply_token, text):
 
     return payload
 
+from .messages import *
+def message_reply(text):
+    """
+    受け取ったメッセージごとに返信の文章を場合わけする関数
+
+    Params:
+        text: string: メッセージ
+    Returns:
+        reply_message: string: こちらからの返信
+    """
+
+    ##########################
+    # 返信メッセージの条件分岐設定
+    ##########################
+
+    if 'バス' in text:
+        reply_message = bus(text)
+    else:
+        reply_message = estimated_option(text)
+
+    ##########################
+
+    return reply_message

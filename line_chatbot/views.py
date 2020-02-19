@@ -4,8 +4,7 @@ from django.views.generic import TemplateView
 
 from django.views.decorators.csrf import csrf_exempt
 
-from .utils import parse_line_webhook, reply
-from line_chatbot.reply_prediction.main import predict_reply
+from .utils import parse_line_webhook, reply, message_reply
 
 
 class TopView(TemplateView):
@@ -14,12 +13,14 @@ class TopView(TemplateView):
 
 
 def post_message(request):
-
+    """ 
+    メイン画面のフォームでLINEメッセージを試すことができるPOSTリクエストがくるView
+    """
     message = request.POST.get('message')
-    title = predict_reply(message)
-    
+    reply_message = message_reply(message)
+
     context = {
-        'auto_reply': title
+        'auto_reply': reply_message
     }
 
     return render(request, 'line_chatbot/top.html', context)
