@@ -29,7 +29,7 @@ video {
         <form action="{% url 'line_chatbot:post_message' %}" method='POST'>
             {% csrf_token %}
             <label for="message">LINEで送信するメッセージを入れてください</label>
-            <input type="text" name='message' id='message'>
+            <input type="text" name='message' id='message' value='{{ message }}'>
             <button type="submit">送信</button>
         </form>
         

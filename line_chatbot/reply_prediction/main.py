@@ -3,6 +3,7 @@ from line_chatbot.reply_prediction.tokenizer import WordDivider
 from line_chatbot.reply_prediction.vectorizer import Vectorizer
 from line_chatbot.reply_prediction.distance_measure import DistanceMeasure
 
+from line_chatbot.reply_prediction.setup_option_mapping import OPTIONS_DATA  # keywordsをとるため
 
 def predict_reply(user_message):
     """
@@ -20,6 +21,18 @@ def predict_reply(user_message):
     measure = DistanceMeasure()
 
     word_list = wd.tokenize(user_message)
+
+    # word_listの中に、各オプションのkeywordsと同じ単語が入っていたらそのoptionで確定
+    word_set = set(word_list)
+
+    for option in OPTIONS_DATA:
+        keywords_set = set(option['keywords'])
+
+        if word_set & keywords_set:
+
+            return option['title']
+
+
     mean_vec = vectorizer.get_mean_vectorized(word_list)
     nearest_options = measure.get_option_data(mean_vec)
 

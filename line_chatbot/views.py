@@ -20,6 +20,7 @@ def post_message(request):
     reply_message = message_reply(message)
 
     context = {
+        'message': message,
         'auto_reply': reply_message
     }
 
