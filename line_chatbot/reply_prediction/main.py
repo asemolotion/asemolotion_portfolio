@@ -22,17 +22,17 @@ def predict_reply(user_message):
 
     word_list = wd.tokenize(user_message)
 
-    # word_listの中に、各オプションのkeywordsと同じ単語が入っていたらそのoptionで確定
+    # word_listの中に、各オプションのkeywordsと同じ単語が入っていたらそのoptionで確定する
     word_set = set(word_list)
 
     for option in OPTIONS_DATA:
         keywords_set = set(option['keywords'])
 
-        if word_set & keywords_set:
+        if word_set & keywords_set:  # 重複があった時
 
             return option['title']
 
-
+    # 重複する単語がない時、ベクトルに変換してもっとも近い内容のものを返す。
     mean_vec = vectorizer.get_mean_vectorized(word_list)
     nearest_options = measure.get_option_data(mean_vec)
 
