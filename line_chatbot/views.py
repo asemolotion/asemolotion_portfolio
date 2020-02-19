@@ -4,11 +4,27 @@ from django.views.generic import TemplateView
 
 from django.views.decorators.csrf import csrf_exempt
 
-from .utils import parse_line_webhook, reply
+from .utils import parse_line_webhook, reply, message_reply
+
 
 class TopView(TemplateView):
     """ メイン画面表示　"""
     template_name = 'line_chatbot/top.html'
+
+
+def post_message(request):
+    """ 
+    メイン画面のフォームでLINEメッセージを試すことができるPOSTリクエストがくるView
+    """
+    message = request.POST.get('message')
+    reply_message = message_reply(message)
+
+    context = {
+        'message': message,
+        'auto_reply': reply_message
+    }
+
+    return render(request, 'line_chatbot/top.html', context)
 
 
 # LINEからのWebhookでのPOSTリクエストはCSRFトークンつけれないのでCSRFトークンを無視する。

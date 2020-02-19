@@ -38,8 +38,6 @@ class DistanceMeasure:
             similarity = 1 - spatial.distance.cosine(vec, option['vec'])
             option['sim'] = similarity
             sim_list.append(similarity)
-
-        print(sim_list)
         
         nearest_indices = []
         
