@@ -77,7 +77,7 @@ def dispatch_payload(reply_token, text):
     if 'バス' in text:
         my_message = bus(text)
     else:
-        my_message = echo(text)
+        my_message = estimated_option(text)
 
     payload = {
         "replyToken":reply_token,

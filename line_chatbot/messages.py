@@ -1,4 +1,4 @@
-
+from line_chatbot.reply_prediction.main import predict_reply
 
 
 def echo(text):
@@ -22,3 +22,15 @@ def bus(text):
         string: 返信するメッセージ
     """
     return "バスで帰る"
+
+
+def estimated_option(text):
+    """
+    textに近い話題のタイトルを返す関数
+
+    Params:
+        text: string: 送られてきた文字列
+    Returns:
+        string: 返信するメッセージ
+    """
+    return predict_reply(text)
