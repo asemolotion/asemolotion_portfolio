@@ -6,39 +6,84 @@
 <style type="text/css">
 /* keras_mnistが参考 */
 video {
-    width: 100%;
+    width: 40%;
 }
 </style>    
 
-<div class='container'>
+<div class='container py-3'>
 
     <section id='description' class='mt-3'>
         <h3><u>LINE チャットボット</u></h3>
         <p class='text-info'>
             このアプリはLINE友達追加でご確認いただけます。
         </p>
-        機能
-        <li>
-            Asemolotionアプリのアカウントに、送信すれば、「です」をつけてオウム返しする。
-        </li>
-            
     </section>
 
-    <section id='' class='mt-3'>
-        <h5>自動返信内容の確認</h5>
-        <form action="{% url 'line_chatbot:post_message' %}" method='POST'>
-            {% csrf_token %}
-            <label for="message">LINEで送信するメッセージを入れてください</label>
-            <input type="text" name='message' id='message' value='{{ message }}'>
-            <button type="submit">送信</button>
-        </form>
-        
-        
-        {% if auto_reply %}
+    <section id='contents' class='mt-3'>
+        <h5 class='text-danger'>機能</h5>
+            
+        <li>
+            自治体のアカウントライクなボット
+        </li>
+        <li>
+            長崎と福岡のバスの時刻表が表示される
+        </li>
+                        
+    </section>
+
+    <section id='gov_account' class='mt-3'>
+        <h5 class='text-danger'>自治体のアカウントライクなボット</h5>
         <p>
-            返信: 「{{ auto_reply }}」
+        メッセージを送ると、自治体のWebページの項目リンクが表示される機能。
+        送られてきたメッセージの内容ごとに、近い項目を予測する機械学習モデルで推論している。
+        このチャットボットでは以下の項目のいずれかが返ってくる。
         </p>
-        {% endif %}
+        <blockquote>
+            <p class='text-secondary'> 
+                1 急な病気やけがのとき<br>
+                2 イベント情報<br>
+                3 よくある質問、相談窓口<br>
+                4 受け取る情報の設定<br>
+                5 道路公園等通報<br>
+                6 防災・災害情報<br>                
+                7 家庭ごみの出し方ルール<br>
+                8 粗大ごみ受付<br>    
+                9 引っ越し・証明案内<br>
+
+                (注)福岡市アカウントを参考にした。
+            </p>
+        </blockquote>  
+        <p>デモ動画</p>
+        <video src="{% static 'line_chatbot/img/gov_line_demo.mp4' %}" autoplay muted></video>        
+    </section>
+
+    <section id='bus_schedule' class='mt-3'>
+        <h5 class='text-danger'>長崎と福岡のバスの時刻表を表示する機能</h5>
+        <p>
+            上記の自治体アカウント機能以外に、
+            「長崎」「福岡」「バス」のいずれかの単語を含んだメッセージを送ると、長崎福岡間のバスの運行予定が返ってくる。
+            完全に自分用。
+        </p>
+    </section>
+
+
+
+    <section id='replytest' class='mt-3'>
+        <h5 class='text-danger'>自動返信内容のテスト</h5>
+        <div class='px-2 py-2 bg-warning'>
+            <form action="{% url 'line_chatbot:post_message' %}" method='POST'>
+                {% csrf_token %}
+                <label for="message">LINEで送信するメッセージを入れてください</label>
+                <input type="text" name='message' id='message' value='{{ message }}'>
+                <button type="submit">送信</button>
+            </form>
+            
+            {% if auto_reply %}
+            <p>
+                自動返信内容: 「{{ auto_reply }}」
+            </p>
+            {% endif %}
+        </div>
     </section>
 
 </div>
