@@ -15,6 +15,7 @@ def predict_reply(user_message):
         nearest_option: string: 選択肢のタイトル
     """
     CUSTOM_DICT_PATH = os.path.join(os.path.abspath(os.path.dirname(__file__)), 'janome_custom_dict.csv')
+    # janomeのカスタム辞書csvを読み込んでインスタンスにする。
     wd = WordDivider(CUSTOM_DICT_PATH, udic_type='simpledic', udic_enc='utf8')
 
     vectorizer = Vectorizer()
@@ -35,5 +36,6 @@ def predict_reply(user_message):
     # 重複する単語がない時、ベクトルに変換してもっとも近い内容のものを返す。
     mean_vec = vectorizer.get_mean_vectorized(word_list)
     nearest_options = measure.get_option_data(mean_vec)
+    
 
     return nearest_options[0]
