@@ -11,10 +11,11 @@ class TopView(TemplateView):
     """ メイン画面表示　"""
     template_name = 'line_chatbot/top.html'
 
-
+# webでの確認用
 def post_message(request):
     """ 
     メイン画面のフォームでLINEメッセージを試すことができるPOSTリクエストがくるView
+    注意) メッセージのテストしかできないのでカルーセルとかのテストはできない。
     """
     message = request.POST.get('message')
     if message:

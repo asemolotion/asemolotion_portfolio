@@ -28,24 +28,19 @@ def bus(text):
   				"type": "carousel",
   				"columns":[
   					{
-  						"title": "各種コマンド",
-  						"text":"下のリンクをタップしてください。",
+  						"title": "長崎福岡間のバスの時刻表",
+  						"text":"選択してください",
   						"actions": [
   							{
   								"type":"uri",
-  								"label":"配信予約済みリスト",
-  								"uri": "https://nakagawa-reminder.herokuapp.com/main/tasks/list/"
+  								"label":"長崎から福岡",
+  								"uri": "https://www.navitime.co.jp/highwaybus/42_40"
   							},
   							{
   								"type": "uri",
-  								"label": "予備",
-  								"uri":"https://nakagawa-reminder.herokuapp.com/"
+  								"label": "福岡から長崎",
+  								"uri":"https://www.navitime.co.jp/highwaybus/40_42"
   							},
-  							{
-  								"type":"uri",
-  								"label":"管理画面",
-  								"uri": "https://nakagawa-reminder.herokuapp.com/admin/"
-  							}
   						]
   					}
   				]
