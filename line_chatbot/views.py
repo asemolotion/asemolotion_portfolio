@@ -17,7 +17,12 @@ def post_message(request):
     メイン画面のフォームでLINEメッセージを試すことができるPOSTリクエストがくるView
     """
     message = request.POST.get('message')
-    reply_message = message_reply(message)
+    if message:
+        reply_message = message_reply(message)
+    else:
+        # 空欄できたら一般的な答えを返す。
+        default_message = 'リスト'
+        reply_message = message_reply(default_message)
 
     context = {
         'message': message,
