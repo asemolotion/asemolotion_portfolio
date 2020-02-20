@@ -77,8 +77,11 @@ def dispatch_payload(reply_token, text):
 
     # バス予定
     bus_schedule_words = ['バス','長崎','福岡']
+    
     for word in bus_schedule_words:
+        print(word + ' x')
         if word in text:
+            print(word)
             reply_item = bus(text)
     
             payload = {
@@ -88,20 +91,12 @@ def dispatch_payload(reply_token, text):
                         reply_item
                     ]
             }  
-
+            print(payload)
             return payload
 
     # メッセージ返信
     reply_item = message_reply(text)
-
-    payload = {
-        "replyToken":reply_token,
-       
-        "messages":[
-                reply_item
-            ]
-    }  
-    return payload
+    return reply_item
 
 from .messages import *
 def message_reply(text):
