@@ -95,7 +95,14 @@ def dispatch_payload(reply_token, text):
             return payload
 
     # メッセージ返信
-    reply_item = message_reply(text)
+    reply_message = message_reply(text)
+
+
+    reply_item = {
+        "type":"text",
+        "text": reply_message
+    }
+
     return reply_item
 
 from .messages import *
@@ -124,9 +131,5 @@ def message_reply(text):
 
     ##########################
 
-    reply_item = {
-        "type":"text",
-        "text": reply_message
-    }
 
-    return reply_item
+    return reply_message
