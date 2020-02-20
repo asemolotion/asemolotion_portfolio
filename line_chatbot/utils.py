@@ -75,18 +75,32 @@ def dispatch_payload(reply_token, text):
         payload: dict: 返信内容
     """
 
-    my_message = message_reply(text)
+    # バス予定
+    bus_schedule_words = ['バス','長崎','福岡']
+    for word in bus_schedule_words:
+        if word in text:
+            reply_item = bus(text)
+    
+            payload = {
+                "replyToken":reply_token,
+            
+                "messages":[
+                        reply_item
+                    ]
+            }  
+
+            return payload
+
+    # メッセージ返信
+    reply_item = message_reply(text)
 
     payload = {
         "replyToken":reply_token,
+       
         "messages":[
-                {
-                    "type":"text",
-                    "text": my_message
-                }
+                reply_item
             ]
-        }  
-
+    }  
     return payload
 
 from .messages import *
@@ -104,11 +118,20 @@ def message_reply(text):
     # 返信メッセージの条件分岐設定
     ##########################
 
-    if 'バス' in text:
-        reply_message = bus(text)
+
+    # 説明分
+    if '使い方' in text:
+        reply_message = instruction(text)
+
+    # 返信推論
     else:
         reply_message = estimated_option(text)
 
     ##########################
 
-    return reply_message
+    reply_item = {
+        "type":"text",
+        "text": reply_message
+    }
+
+    return reply_item
