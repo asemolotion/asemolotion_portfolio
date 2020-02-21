@@ -62,11 +62,11 @@ video {
     </section>
 
     <section id='bus_schedule' class='mt-3'>
-        <h5 class='text-danger'>長崎と福岡のバスの時刻表を表示する機能</h5>
+        <h5 class='text-danger'>長崎と福岡のバスの時刻表リンクを表示する機能</h5>
         <p>
             上記の自治体アカウント機能以外に、
             「長崎」「福岡」「バス」のいずれかの単語を含んだメッセージを送ると、長崎福岡間のバスの運行予定が返ってくる。
-            完全に自分用。
+            カルーセルのUIを試す目的。
         </p>
     </section>
 
@@ -74,6 +74,7 @@ video {
 
     <section id='replytest' class='mt-3'>
         <h5 class='text-danger'>自動返信内容のテスト</h5>
+        <p class="text-secondary">(注意)バス時刻表リンクの機能は、文字による返信でないので試せません。</p>
         <div class='px-2 py-2 bg-warning'>
             <form action="{% url 'line_chatbot:post_message' %}" method='POST'>
                 {% csrf_token %}
